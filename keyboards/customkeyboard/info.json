@@ -5,7 +5,6 @@
     "url": "https://github.com",
     "processor": "RP2040",
     "bootloader": "rp2040",
-    "development_board": "adafruit_kb2040",
     "diode_direction": "COL2ROW",
     "matrix_pins": {
         "cols": ["GP9", "GP10", "GP19", "GP20", "GP18", "GP26", "GP27"],
