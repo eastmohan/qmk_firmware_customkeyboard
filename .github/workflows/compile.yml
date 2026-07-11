@@ -26,10 +26,9 @@ jobs:
 
       - name: Compile Custom Firmware
         run: |
-          # Add local pip binaries to the path so the system sees the qmk command
-          export PATH="$HOME/.local/bin:$PATH"
           cd qmk_firmware
-          qmk setup -y
+          # Invoke the installed python module directly to bypass PATH issues
+          python3 -m qmk_cli.main setup -y
           make customkeyboard:vial
 
       - name: Upload Finished Firmware
