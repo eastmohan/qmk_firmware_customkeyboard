@@ -19,8 +19,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: compiled-firmware
-          path: |
-            *.uf2
-            *.bin
-            *.hex
-            .build/*.uf2
+          path: "**/*.uf2"
