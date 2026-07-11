@@ -9,10 +9,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Configure Git Safe Directory
+        run: |
+          git config --global --add safe.directory /__w/qmk_firmware_customkeyboard/qmk_firmware_customkeyboard
+
       - name: Compile Custom Firmware
         run: |
-          qmk target-generate -kb customkeyboard -km vial || true
-          make -f builddefs/build_keyboard.mk KEYBOARD=customkeyboard KEYMAP=vial
+          make customkeyboard:vial
 
       - name: Upload Finished Firmware
         uses: actions/upload-artifact@v4
