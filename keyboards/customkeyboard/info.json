@@ -2,6 +2,7 @@
     "manufacturer": "Custom",
     "keyboard_name": "Custom Keyboard",
     "maintainer": "qmk",
+    "url": "https://github.com",
     "processor": "RP2040",
     "bootloader": "rp2040",
     "development_board": "adafruit_kb2040",
