@@ -21,15 +21,15 @@ jobs:
 
       - name: Configure Git Safe Directory
         run: |
-          git config --global --add safe.directory /__w/qmk_firmware_customkeyboard/qmk_firmware_customkeyboard/qmk_firmware
+          git config --global --add safe.directory /__w/qmk_firmware_mykeyboard/qmk_firmware_mykeyboard/qmk_firmware
 
       - name: Compile Custom Firmware
         run: |
           # Inject your keyboard files into the official Vial environment
-          cp -r custom_source/keyboards/customkeyboard qmk_firmware/keyboards/
+          cp -r custom_source/keyboards/mykeyboard qmk_firmware/keyboards/
           
           cd qmk_firmware
-          make customkeyboard:vial
+          make mykeyboard:vial
 
       - name: Upload Finished Firmware
         uses: actions/upload-artifact@v4
