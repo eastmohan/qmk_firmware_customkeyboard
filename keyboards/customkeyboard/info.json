@@ -1,6 +1,6 @@
 {
-    "manufacturer": "Custom",
     "keyboard_name": "Custom Keyboard",
+    "manufacturer": "Custom",
     "maintainer": "qmk",
     "url": "https://github.com",
     "processor": "RP2040",
@@ -15,15 +15,6 @@
         "device_version": "1.0.0",
         "pid": "0x0065",
         "vid": "0xFEED"
-    },
-    "features": {
-        "bootmagic": true,
-        "console": false,
-        "command": false,
-        "extrakey": true,
-        "mousekey": false,
-        "nkro": true,
-        "oled": true
     },
     "layouts": {
         "LAYOUT": {
