@@ -8,13 +8,19 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Compile Custom Firmware
         run: |
-          qmk compile -kb customkeyboard -km vial
-
+          make customkeyboard:vial
+          
       - name: Upload Finished Firmware
         uses: actions/upload-artifact@v4
         with:
           name: compiled-firmware
-          path: .build/*.uf2
+          path: |
+            *.uf2
+            *.bin
+            *.hex
+            .build/*.uf2
