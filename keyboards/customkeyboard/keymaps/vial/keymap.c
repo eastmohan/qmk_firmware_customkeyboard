@@ -25,3 +25,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
+
+// Fallback definitions for compiler introspection
+const uint16_t tt_size = 0;
+void *key_combos = NULL;
+void *tap_dance_actions = NULL;
+void *key_overrides = NULL;
