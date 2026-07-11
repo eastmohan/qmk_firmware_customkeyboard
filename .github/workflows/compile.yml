@@ -4,6 +4,7 @@ on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli
     steps:
       - name: Checkout Your Keyboard Custom Files
         uses: actions/checkout@v4
@@ -18,17 +19,16 @@ jobs:
           submodules: recursive
           path: qmk_firmware
 
-      - name: Setup QMK Environment
+      - name: Configure Git Safe Directory
         run: |
-          python3 -m pip install --user -r qmk_firmware/requirements.txt
-          # Inject your keyboard files into the official Vial environment
-          cp -r custom_source/keyboards/customkeyboard qmk_firmware/keyboards/
+          git config --global --add safe.directory /__w/qmk_firmware_customkeyboard/qmk_firmware_customkeyboard/qmk_firmware
 
       - name: Compile Custom Firmware
         run: |
+          # Inject your keyboard files into the official Vial environment
+          cp -r custom_source/keyboards/customkeyboard qmk_firmware/keyboards/
+          
           cd qmk_firmware
-          # Invoke the installed python module directly to bypass PATH issues
-          python3 -m qmk_cli.main setup -y
           make customkeyboard:vial
 
       - name: Upload Finished Firmware
