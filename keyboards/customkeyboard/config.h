@@ -9,7 +9,6 @@
 #define OLED_DISPLAY_128X32
 #define OLED_BRIGHTNESS 128
 
-#pragma once
 
 // Unique ID required by Vial GUI framework to recognize layout adjustments
 #define VIAL_KEYBOARD_UID {0xBE, 0xEF, 0x42, 0x01}
