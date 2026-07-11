@@ -1,0 +1,20 @@
+name: Manual QMK Build
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile Custom Firmware
+        run: |
+          qmk compile -kb customkeyboard -km vial
+
+      - name: Upload Finished Firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-firmware
+          path: .build/*.uf2
