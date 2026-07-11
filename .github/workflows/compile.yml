@@ -1,20 +1,32 @@
-name: Manual QMK Build
+name: Manual Vial QMK Build
 on: [workflow_dispatch]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ghcr.io/qmk/qmk_cli
     steps:
-      - name: Checkout Repository
+      - name: Checkout Your Keyboard Custom Files
         uses: actions/checkout@v4
+        with:
+          path: custom_source
 
-      - name: Configure Git Safe Directory
+      - name: Checkout Official Vial-QMK Repository
+        uses: actions/checkout@v4
+        with:
+          repository: vial-kb/vial-qmk
+          ref: vial
+          submodules: recursive
+          path: qmk_firmware
+
+      - name: Setup QMK Environment
         run: |
-          git config --global --add safe.directory /__w/qmk_firmware_customkeyboard/qmk_firmware_customkeyboard
+          python3 -m pip install --user -r qmk_firmware/requirements.txt
+          # Inject your keyboard files into the official Vial environment
+          cp -r custom_source/keyboards/customkeyboard qmk_firmware/keyboards/
 
       - name: Compile Custom Firmware
         run: |
+          cd qmk_firmware
           make customkeyboard:vial
 
       - name: Upload Finished Firmware
@@ -22,5 +34,5 @@ jobs:
         with:
           name: compiled-firmware
           path: |
-            *.uf2
-            .build/*.uf2
+            qmk_firmware/*.uf2
+            qmk_firmware/.build/*.uf2
